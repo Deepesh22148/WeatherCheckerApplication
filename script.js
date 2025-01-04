@@ -14,7 +14,6 @@ const humidityObject = document.querySelector(".weatherExtraDetails .box .dataBo
 const windSpeedObject = document.querySelector(".weatherExtraDetails .box .dataBox .dataBoxContent #windSpeed");
 const loadScreen = document.querySelector(".loaderScreen");
 
-console.log(loadScreen);
 
 const currentWeatherCheckerBg = getComputedStyle(weatherChecker).backgroundImage;
 const currentInputField = getComputedStyle(inputField).backgroundColor;
@@ -23,7 +22,7 @@ const currentInputField = getComputedStyle(inputField).backgroundColor;
 weatherChecker.style.backgroundImage = 'none';
 inputField.style.borderBottomRightRadius = '20px';
 inputField.style.borderBottomLeftRadius = '20px';
-console.log(currentWeatherCheckerBg);
+
 
 weatherRightNow.remove();
 weatherExtraDetails.remove();
@@ -83,13 +82,13 @@ function removeLoadScreen(){
 
 async function callURL(){
     try {
-        console.log("hello");
+
         const response = await fetch(apiCallForWeather);
         const jsonReply = await response.json();
         temperature = (jsonReply.main.temp - 273.15).toFixed(2);
         humidity = jsonReply.main.humidity.toFixed(0);
         windSpeed = (jsonReply.wind.speed * 3.6).toFixed(2);
-        console.log(jsonReply.weather[0].main);
+    
         let val = knowledgeBase[(jsonReply.weather[0].main)];
         weatherImg = `<img src="images/${val}.png" alt="">`
         updateWeather();
@@ -111,7 +110,6 @@ async function apiHandling(){
 
         const response = await fetch(apiCallForLocation);
         if(!response.ok){
-            console.log("Error: 404 HTTP not found");
             return 2;
         }
     
@@ -189,7 +187,6 @@ const handleSearch = () => {
             } catch (error) {
                 decidingFactor = error;
             }
-            console.log(decidingFactor);
         })();
     }
 };
